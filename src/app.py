@@ -28,9 +28,11 @@ async def webhook(request: Request):
     json_payload = await request.json()
     changelog_map = {item["field"]: item["toString"]
                      for item in json_payload["changelog"]["items"]}
+    issue_id = json_payload["issue"]["id"]
+    issue_key = json_payload["issue"]["key"]
     summary = changelog_map.get("summary")
     description = changelog_map.get("description")
-    workflow_payload = f"Summary: {summary}\nDescription: {description}"
+    workflow_payload = f"IssueID: {issue_id}\nIssueKey: {issue_key}\nSummary: {summary}\nDescription: {description}"
     call_classification_workflow(workflow_payload)
     return {"status": "classification workflow triggered"}
 

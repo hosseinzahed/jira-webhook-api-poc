@@ -1,5 +1,6 @@
 ### Trigger classification workflow when webhook is received
 POST http://localhost:8000/webhook
+#POST https://app-jira-ticket-webhook-demo.azurewebsites.net/webhook
 Content-Type: application/json
 
 {
