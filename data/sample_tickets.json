@@ -1,0 +1,165 @@
+[
+  {
+    "ticketClass": "Safety",
+    "summary": "Emergency stop not responding",
+    "description": "Nacelle E-stop does not trigger immediate shutdown during safety test. Repeated twice with same result; turbine remains in run-ready state."
+  },
+  {
+    "ticketClass": "Safety",
+    "summary": "Tower door interlock not detected",
+    "description": "Tower access door opens but interlock status remains 'closed' in controller. Safety chain status becomes inconsistent and blocks safe service mode."
+  },
+  {
+    "ticketClass": "Safety",
+    "summary": "Unexpected rotor lock release",
+    "description": "Rotor lock indication clears without manual release action. Event recorded during maintenance and may create unsafe rotation risk if not contained."
+  },
+  {
+    "ticketClass": "Safety",
+    "summary": "Service lift emergency alarm inactive",
+    "description": "Lift emergency alarm button does not register in system diagnostics. No alarm signal received in safety monitoring while lift is powered on."
+  },
+  {
+    "ticketClass": "Safety",
+    "summary": "Fire detection sensor fault",
+    "description": "Fire detection reports intermittent sensor fault and toggles between OK/fault. Requires inspection due to potential loss of fire detection coverage."
+  },
+  {
+    "ticketClass": "Safety",
+    "summary": "Yaw brake safety status unstable",
+    "description": "Yaw brake safety feedback fluctuates during idle operation. System occasionally flags unsafe condition and requests manual verification."
+  },
+  {
+    "ticketClass": "Safety",
+    "summary": "Pitch emergency stop triggers late",
+    "description": "Pitch emergency stop command executes with noticeable delay in logs. Delay exceeds expected timing and may reduce safety response margin."
+  },
+  {
+    "ticketClass": "Safety",
+    "summary": "Overspeed protection self-test fails",
+    "description": "Overspeed protection self-test fails after power cycle. Protective function not confirmed and turbine is held in restricted state."
+  },
+
+  {
+    "ticketClass": "LAC",
+    "summary": "Turbine fails to start after reset",
+    "description": "After reset, turbine stays in blocked startup state. Local controller logs show an internal state mismatch preventing transition to normal sequence."
+  },
+  {
+    "ticketClass": "LAC",
+    "summary": "Frequent stop due to sensor plausibility",
+    "description": "Controller stops turbine citing sensor plausibility check failure. Signal values look within range but plausibility logic flags mismatch repeatedly."
+  },
+  {
+    "ticketClass": "LAC",
+    "summary": "Incorrect derating applied",
+    "description": "Local controller applies derate without active alarm conditions. Power setpoint reduced unexpectedly and does not recover after clearing warnings."
+  },
+  {
+    "ticketClass": "LAC",
+    "summary": "Yaw misalignment not correcting",
+    "description": "Yaw control does not correct wind direction offset over time. Controller reports yaw active but nacelle position remains unchanged in trend."
+  },
+  {
+    "ticketClass": "LAC",
+    "summary": "Pitch calibration not saved",
+    "description": "Pitch calibration completes but values revert after restart. Local controller appears to reject stored parameters or fails to persist configuration."
+  },
+  {
+    "ticketClass": "LAC",
+    "summary": "Start sequence stuck at step",
+    "description": "Startup sequence halts at a fixed step and times out. No hardware trip observed; controller sequence logic appears to wait for missing condition."
+  },
+  {
+    "ticketClass": "LAC",
+    "summary": "Alarm flood after controller reboot",
+    "description": "Following local controller reboot, multiple non-critical alarms raise simultaneously. Clears after 10–15 minutes but repeats on next reboot."
+  },
+  {
+    "ticketClass": "LAC",
+    "summary": "Temperature control loop oscillation",
+    "description": "Cooling control loop oscillates and causes frequent fan speed changes. Trend shows periodic overshoot and undershoot around setpoint."
+  },
+
+  {
+    "ticketClass": "Converter",
+    "summary": "Converter DC link overvoltage trip",
+    "description": "Converter trips intermittently in high wind with DC link overvoltage. Fault code and timestamps captured; resets succeed but recurrence continues."
+  },
+  {
+    "ticketClass": "Converter",
+    "summary": "IGBT temperature high alarm",
+    "description": "IGBT temperature rises quickly under moderate load and triggers alarm. Cooling appears active, but thermal margin reduces faster than expected."
+  },
+  {
+    "ticketClass": "Converter",
+    "summary": "Grid overcurrent protection trip",
+    "description": "Converter protection trips on grid overcurrent during ramp-up. Occurs sporadically and correlates with specific grid voltage fluctuations."
+  },
+  {
+    "ticketClass": "Converter",
+    "summary": "Cooling pump feedback missing",
+    "description": "Converter cooling pump command is issued but feedback remains inactive. Converter enters protective derate mode to prevent overheating."
+  },
+  {
+    "ticketClass": "Converter",
+    "summary": "Pre-charge sequence timeout",
+    "description": "DC link pre-charge does not reach target voltage within allowed time. Converter blocks synchronization and requests manual restart."
+  },
+  {
+    "ticketClass": "Converter",
+    "summary": "Harmonics compliance warning",
+    "description": "Converter reports elevated harmonics measurement and raises compliance warning. No immediate trip, but warning persists over multiple hours."
+  },
+  {
+    "ticketClass": "Converter",
+    "summary": "Converter communication dropouts",
+    "description": "Intermittent communication loss between converter and main controller. Causes brief production dips and sometimes transitions to safe standby."
+  },
+  {
+    "ticketClass": "Converter",
+    "summary": "DC link capacitor health degraded",
+    "description": "Diagnostics indicates reduced DC link capacitor health. Ripple measurement above baseline and suggests aging or thermal stress conditions."
+  },
+
+  {
+    "ticketClass": "Application",
+    "summary": "SCADA dashboard not loading data",
+    "description": "Monitoring dashboard fails to show live production and alarms for multiple turbines. UI loads, but data panels remain empty due to API errors."
+  },
+  {
+    "ticketClass": "Application",
+    "summary": "Alarms not forwarding to email",
+    "description": "Alarm notifications are visible in the portal but not delivered via email. SMTP integration shows intermittent failures in the notification service."
+  },
+  {
+    "ticketClass": "Application",
+    "summary": "Work order sync failing",
+    "description": "Work orders created in field tool do not sync to central system. Sync job reports conflicts and retries without completing successfully."
+  },
+  {
+    "ticketClass": "Application",
+    "summary": "User access denied after role change",
+    "description": "User receives access denied when opening the operations app after role update. Identity appears correct but authorization cache may be stale."
+  },
+  {
+    "ticketClass": "Application",
+    "summary": "API latency spike on telemetry endpoint",
+    "description": "Telemetry API response time increased significantly during peak hours. Requests time out intermittently and affect downstream analytics jobs."
+  },
+  {
+    "ticketClass": "Application",
+    "summary": "Data gaps in production reports",
+    "description": "Daily production report shows missing intervals for several assets. Raw ingestion appears delayed, causing incomplete aggregation for the period."
+  },
+  {
+    "ticketClass": "Application",
+    "summary": "Mobile app crashes on alarm list",
+    "description": "Mobile service app crashes when opening the alarm list for a site. Crash occurs consistently on specific device OS version."
+  },
+  {
+    "ticketClass": "Application",
+    "summary": "Asset metadata not updating",
+    "description": "Asset metadata edits save in UI but revert after refresh. Backend returns success yet the updated values do not persist in subsequent reads."
+  }
+]
