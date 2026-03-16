@@ -12,6 +12,23 @@ When a Jira issue is created or updated, Jira sends a webhook payload to this AP
 Jira → POST /webhook → FastAPI → Azure AI Foundry Workflow → Classification result
 ```
 
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor User as Jira User
+    participant Jira as Jira
+    participant Webhook as App Service<br/>(Webhook API)
+    participant Foundry as Azure AI Foundry<br/>(Workflow)
+
+    User->>Jira: Create or update issue
+    Jira-->>Webhook: POST /webhook<br/>(issue_created / issue_updated event)
+    Webhook->>Webhook: Extract summary & description<br/>from payload
+    Webhook->>Foundry: Invoke classification workflow<br/>(summary, description)
+    Foundry-->>Webhook: Return classification result<br/>(e.g. Safety, Bug, Feature Request)
+    Webhook-->>Jira: 200 OK + classification result
+```
+
 ---
 
 ## 🚀 Getting Started
