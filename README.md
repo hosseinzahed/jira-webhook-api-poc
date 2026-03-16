@@ -14,6 +14,8 @@ Jira → POST /webhook → FastAPI → Azure AI Foundry Workflow → Classificat
 
 ## 🔄 Sequence Diagram
 
+The diagram below illustrates the end-to-end flow triggered whenever a Jira issue is created or updated.
+
 ```mermaid
 sequenceDiagram
     actor User as Jira User
@@ -28,6 +30,20 @@ sequenceDiagram
     Foundry-->>Webhook: Return classification result<br/>(e.g. Safety, Bug, Feature Request)
     Webhook-->>Jira: 200 OK + classification result
 ```
+
+### Step-by-step explanation
+
+1. **Jira User creates or updates an issue** — A team member opens a new ticket or edits an existing one inside Jira.
+
+2. **Jira fires a webhook event** — Jira detects the `issue_created` or `issue_updated` event and immediately sends an HTTP `POST` request containing the full issue payload (in JSON) to the configured webhook URL hosted on **Azure App Service**.
+
+3. **App Service extracts ticket metadata** — The FastAPI application parses the incoming JSON payload and pulls out the two fields that matter for classification: the issue `summary` (title) and the `description` (body text).
+
+4. **App Service invokes the Azure AI Foundry workflow** — The extracted `summary` and `description` are forwarded as inputs to a named agent workflow running inside an **Azure AI Foundry** project. The workflow is invoked using `DefaultAzureCredential` for passwordless authentication.
+
+5. **Azure AI Foundry returns a classification** — The AI agent analyses the ticket content and responds with a classification label such as *Safety*, *Bug*, or *Feature Request*.
+
+6. **App Service responds to Jira** — The webhook handler returns `200 OK` along with the classification result, completing the request cycle.
 
 ---
 
