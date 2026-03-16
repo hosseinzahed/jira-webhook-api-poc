@@ -113,11 +113,19 @@ The API will be available at `http://localhost:8000`.
 ```
 jira-webhook-api-poc/
 ├── src/
-│   └── app.py          # FastAPI application
+│   └── app.py                  # FastAPI application
 ├── data/
-│   └── sample_event.json   # Sample Jira webhook payload for testing
-├── .env.sample         # Environment variable template
-├── requirements.txt    # Python dependencies
+│   └── sample_event.json       # Sample Jira webhook payload for testing
+├── artifacts/
+│   ├── agent.yaml              # Azure AI Foundry agent definition
+│   └── workflow.yaml           # Azure AI Foundry workflow definition
+├── .env.sample                 # Environment variable template
+├── requirements.txt            # Python dependencies
 └── README.md
 ```
+
+The `artifacts/` folder contains the declarative YAML definitions used to deploy and configure the AI components in Azure AI Foundry:
+
+- **`agent.yaml`** — Defines the classification agent, including its model, instructions, and any tools or knowledge sources it uses to analyse ticket content.
+- **`workflow.yaml`** — Defines the agent workflow that the App Service invokes. It wires together the input parameters (`summary`, `description`) with the agent and specifies the expected output schema (the classification label).
 

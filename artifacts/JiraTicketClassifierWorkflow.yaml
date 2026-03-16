@@ -1,0 +1,21 @@
+kind: workflow
+trigger:
+  kind: OnConversationStart
+  id: trigger_wf
+  actions:
+    - kind: InvokeAzureAgent
+      id: ticket_classifier_agent
+      agent:
+        name: TicketClassifierAgent
+      description: First agent in sequential workflow
+      conversationId: =System.ConversationId
+      input:
+        messages: =System.LastMessage
+      output:
+        messages: Local.LatestMessage
+        autoSend: true
+    - kind: EndConversation
+      id: node-1773433639770
+id: ""
+name: JiraTicketClassifierWorkflow
+description: ""
