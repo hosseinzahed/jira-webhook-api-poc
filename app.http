@@ -1,6 +1,7 @@
 ### Trigger classification workflow when webhook is received
-POST http://localhost:8000/webhook
+#POST http://localhost:8000/webhook
 #POST https://app-jira-ticket-webhook-demo.azurewebsites.net/webhook
+POST https://prod-31.swedencentral.logic.azure.com:443/workflows/b50b71d8f71e44cba5dde133e7e6851c/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=z5gr7dFyO0kiys-5RCKXpU58Q0I_DJ-sNdbepURfAsU
 Content-Type: application/json
 
 {
@@ -282,4 +283,15 @@ Content-Type: application/json
       }
     ]
   }
+}
+
+####
+
+POST https://prod-31.swedencentral.logic.azure.com:443/workflows/b50b71d8f71e44cba5dde133e7e6851c/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=z5gr7dFyO0kiys-5RCKXpU58Q0I_DJ-sNdbepURfAsU
+Content-Type: application/json
+
+{
+"ticket_id": "TSWSUP-10724",
+"summary": "Client EDF Toolkit license has incorrect IP address for their wind Turbines",
+"description": "Hi TSW support, Client EDF have toolkit license. However they did not notice initially that the IP address is incorrect. Due to this when an issue arose with their 3rd party system, they were unable to utilise toolkit. Customer query: Our issue is we have a connection issue with Toolkit and it seems our license on our laptop is different to the license we are using on bastion. We have always been connecting via the bastion license remotely so hadn’t noticed this issue until today. The local device toolkit license has all of Fallago's old IP details as per below snip. The customer has not been able to use their toolkit since the 13/01/2026."
 }
